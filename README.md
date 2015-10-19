@@ -11,6 +11,7 @@ This is an example repo of a setup using the following technology:
 ## Installation
 
 1. Download/clone this repo
+1. [Install GraphicsMagick](https://github.com/webdriverio/webdrivercss#install)
 1. Run `npm install`
 
 ## Usage 
