@@ -21,11 +21,11 @@ Validate all tests pass.
 
 ## Travis Set Up
 
-The repo comes with [a `.travis.yml` file](./.travis.yml) so you can easily run these tests via [Travis CI](https://travis-ci.org). To do so:
+The repo comes with [a `.travis.yml` file](/blob/master/.travis.yml) so you can easily run these tests via [Travis CI](https://travis-ci.org). To do so:
 
 1. Fork the repo
-1. [Authorize with TravisCI](https://travis-ci.org/auth)
-1. Open a PR on your forked repo and your script should now run
+1. [Authorize TravisCI with GitHub](https://travis-ci.org/auth)
+1. Go to [your profile page](https://travis-ci.org/profile) and enable Travis CI for the repository
 
 ## Test Script
 
