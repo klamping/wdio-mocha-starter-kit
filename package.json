@@ -1,0 +1,17 @@
+{
+  "name": "sample-wd-mocha",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "wdio"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "bluebird": "2.10.2",
+    "chai": "3.3.0",
+    "chai-as-promised": "5.1.0",
+    "mocha": "2.3.3",
+    "selenium-standalone": "4.7.0",
+    "webdrivercss": "git@github.com:sueddeutsche/webdrivercss.git#webdriverio-3-compatibility",
+    "webdriverio": "3.2.5"
+  }
+}
