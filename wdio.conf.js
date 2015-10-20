@@ -131,6 +131,12 @@ exports.config = {
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
 			require("webdrivercss").init(browser, browser.options.plugins.webdrivercss);
+
+			var chai = require("chai");
+			var chaiAsPromised = require("chai-as-promised");
+			chaiAsPromised.transferPromiseness = browser.transferPromiseness;
+			chai.use(chaiAsPromised);
+			chai.Should();
     },
     //
     // Gets executed after all tests are done. You still have access to all global variables from

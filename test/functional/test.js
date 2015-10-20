@@ -1,14 +1,7 @@
-var expect;
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
+var expect = require("chai").expect;
 
 describe("My Tests", function() {
 	before(function() {
-		chaiAsPromised.transferPromiseness = browser.transferPromiseness;
-		chai.use(chaiAsPromised);
-		expect = chai.expect;
-		chai.Should();
-
 		return browser
 			.url("/")
 	});
