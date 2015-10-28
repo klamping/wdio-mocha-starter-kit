@@ -8,9 +8,9 @@ describe("My Tests", function() {
 
 	it("should display red fedoras", function() {
 		return browser
-			.setValue("#twotabsearchtextbox", "red fedora")
+			.setValue("#twotabsearchtextbox", "frontend architecture")
 			.submitForm(".nav-searchbar")
-			.getTitle().should.eventually.contain("red fedora")
+			.getTitle().should.eventually.contain("frontend architecture")
 			.webdrivercss("search results", {
 				name: "results",
 				elem: "#atfResults"
