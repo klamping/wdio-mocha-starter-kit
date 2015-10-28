@@ -41,9 +41,9 @@ You can access your username/key by visiting [the Automate profile page](https:/
 
 After you set your Browserstack account up, you can still test locally by passing in `local=true` as an environmental variable: `local=true npm test`
 
-## Travis Set Up
+## TravisCI Set Up
 
-The repo comes with [a `.travis.yml` file](/blob/master/.travis.yml) so you can easily run these tests via [Travis CI](https://travis-ci.org). To do so:
+The repo comes with [a `.travis.yml` file](https://github.com/klamping/wdio-mocha-starter-kit/blob/master/.travis.yml) so you can easily run these tests via [Travis CI](https://travis-ci.org). To do so:
 
 1. Fork the repo
 1. [Authorize TravisCI with GitHub](https://travis-ci.org/auth)

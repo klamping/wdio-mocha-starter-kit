@@ -38,7 +38,8 @@ var wdioConfig = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'firefox'
+        browserName: 'firefox',
+        'browserstack.debug': true
     }],
     //
     // ===================

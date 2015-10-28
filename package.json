@@ -10,6 +10,7 @@
     "chai": "3.3.0",
     "chai-as-promised": "5.1.0",
     "mocha": "2.3.3",
+    "nconf": "^0.8.2",
     "selenium-standalone": "4.7.0",
     "webdrivercss": "klamping/webdrivercss#webdriverio-3-compatibility",
     "webdriverio": "3.2.5"
