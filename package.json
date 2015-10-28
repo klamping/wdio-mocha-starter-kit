@@ -11,7 +11,7 @@
     "chai-as-promised": "5.1.0",
     "mocha": "2.3.3",
     "selenium-standalone": "4.7.0",
-    "webdrivercss": "sueddeutsche/webdrivercss#webdriverio-3-compatibility",
+    "webdrivercss": "klamping/webdrivercss#webdriverio-3-compatibility",
     "webdriverio": "3.2.5"
   }
 }

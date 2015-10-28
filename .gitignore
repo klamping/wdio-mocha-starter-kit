@@ -1,3 +1,6 @@
+# login creds for browserstack
+test/functional/browserstack.json
+
 # ignore shots directory, except for baseline images
 shots/*
 !shots/*baseline*

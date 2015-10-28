@@ -1,8 +1,13 @@
 var selenium = require("selenium-standalone");
 var Promise = require("bluebird");
+var nconf = require("nconf").env().file({ file: "test/functional/browserstack.json" }).defaults({
+  local: false // if set to true, start a local selenium server instead of using browserstack
+});
 
-exports.config = {
+// Use a local selenium server if asked for, or if browserstack creds aren't available
+var startLocalSelenium = nconf.get("local") || (!nconf.get("user") || !nconf.get("key"));
 
+var wdioConfig = {
     //
     // ==================
     // Specify Test Files
@@ -33,7 +38,7 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        browserName: 'phantomjs'
+        browserName: 'firefox'
     }],
     //
     // ===================
@@ -109,34 +114,37 @@ exports.config = {
     //
     // Gets executed before all workers get launched.
     onPrepare: function() {
-			Promise.promisifyAll(selenium);
+      if (startLocalSelenium) {
 
-			var promise = selenium.installAsync({
-				logger: function(message) {
-					console.log(message);
-				}
-			}).then(function() {
-				console.log("Starting selenium");
+        Promise.promisifyAll(selenium);
 
-				return selenium.startAsync().then(function(child) {
-					selenium.child = child;
-					console.log("Selenium started");
-				});
-			});
+        var promise = selenium.installAsync({
+          logger: function(message) {
+            console.log(message);
+          }
+        }).then(function() {
+          console.log("Starting selenium");
 
-			return promise;
+          return selenium.startAsync().then(function(child) {
+            selenium.child = child;
+            console.log("Selenium started");
+          });
+        });
+
+        return promise;
+      }
     },
     //
     // Gets executed before test execution begins. At this point you will have access to all global
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
-			require("webdrivercss").init(browser, browser.options.plugins.webdrivercss);
+      require("webdrivercss").init(browser, browser.options.plugins.webdrivercss);
 
-			var chai = require("chai");
-			var chaiAsPromised = require("chai-as-promised");
-			chaiAsPromised.transferPromiseness = browser.transferPromiseness;
-			chai.use(chaiAsPromised);
-			chai.Should();
+      var chai = require("chai");
+      var chaiAsPromised = require("chai-as-promised");
+      chaiAsPromised.transferPromiseness = browser.transferPromiseness;
+      chai.use(chaiAsPromised);
+      chai.Should();
     },
     //
     // Gets executed after all tests are done. You still have access to all global variables from
@@ -148,7 +156,16 @@ exports.config = {
     // Gets executed after all workers got shut down and the process is about to exit. It is not
     // possible to defer the end of the process using a promise.
     onComplete: function() {
-			selenium.child.kill();
-			console.log("\nSelenium process ended. Test suite complete");
+      if (selenium.child) {
+        selenium.child.kill();
+        console.log("\nSelenium process ended. Test suite complete");
+      }
     }
 };
+
+if (!startLocalSelenium) {
+  wdioConfig.user = nconf.get("user");
+  wdioConfig.key = nconf.get("key");
+}
+
+exports.config = wdioConfig;
